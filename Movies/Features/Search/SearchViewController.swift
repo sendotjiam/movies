@@ -30,6 +30,7 @@ final class SearchViewController: UIViewController {
         .list, .loading
     ]
     
+    private let wireframe = SearchWireframe()
     private let viewModel: SearchViewModelProtocol
     private let bag = DisposeBag()
     
@@ -89,8 +90,7 @@ extension SearchViewController {
                     }
                     switch (error) {
                     default:
-                        let alert = self.createAlert("Failed", "Failed to get movie list, please try again later.", nil)
-                        self.present(alert, animated: true)
+                        self.wireframe.showAlert(from: self, title: "Failed", body: "Failed to get movie list, please try again later.")
                     }
                 case .completed:
                     return

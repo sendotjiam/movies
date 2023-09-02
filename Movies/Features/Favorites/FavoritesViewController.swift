@@ -86,8 +86,7 @@ extension FavoritesViewController {
                     }
                     switch (error) {
                     default:
-                        let alert = self.createAlert("Failed", "Failed to do your task, please try again later.", nil)
-                        self.present(alert, animated: true)
+                        self.wireframe.showAlert(from: self, title: "Failed", body: "Failed to do your task, please try again later.")
                     }
                 case .completed:
                     return

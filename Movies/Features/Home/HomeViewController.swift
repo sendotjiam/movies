@@ -56,6 +56,7 @@ final class HomeViewController: UIViewController {
         .list, .loading
     ]
     
+    private let wireframe = HomeWireframe()
     private let viewModel: HomeViewModelProtocol
     private let bag = DisposeBag()
     
@@ -128,8 +129,7 @@ extension HomeViewController {
                     }
                     switch (error) {
                     default:
-                        let alert = self.createAlert("Failed", "Failed to get movie list, please try again later.", nil)
-                        self.present(alert, animated: true)
+                        self.wireframe.showAlert(from: self, title: "Failed", body: "Failed to get movie list, please try again later.")
                     }
                 case .completed:
                     return
