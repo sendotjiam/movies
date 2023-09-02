@@ -28,4 +28,9 @@ final class FavoritesWireframe {
         vc.modalPresentationStyle = .overCurrentContext
         from.present(vc, animated: false)
     }
+    
+    func showAlert(from: UIViewController, title: String, body: String) {
+        let alert = from.createAlert(title, body, nil)
+        from.present(alert, animated: true)
+    }
 }

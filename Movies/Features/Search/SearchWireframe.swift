@@ -24,4 +24,8 @@ final class SearchWireframe {
         from.navigationController?.pushViewController(vc, animated: true)
     }
 
+    func showAlert(from: UIViewController, title: String, body: String) {
+        let alert = from.createAlert(title, body, nil)
+        from.present(alert, animated: true)
+    }
 }

@@ -151,11 +151,10 @@ extension DetailViewController {
                     }
                     switch (error) {
                     default:
-                        let alert = self.createAlert("Failed", "Failed to get this movie detail, please try again later.") {_ in
+                        self.wireframe.showAlert(from: self, title: "Failed", body: "Failed to get this movie detail, please try again later.", handler: { _ in
                             self.dismiss(animated: true)
                             self.navigationController?.popViewController(animated: true)
-                        }
-                        self.present(alert, animated: true)
+                        })
                     }
                 case .completed:
                     return

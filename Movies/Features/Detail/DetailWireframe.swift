@@ -29,4 +29,9 @@ final class DetailWireframe {
         vc.modalPresentationStyle = .overCurrentContext
         from.present(vc, animated: false)
     }
+    
+    func showAlert(from: UIViewController, title: String, body: String, handler : ((UIAlertAction) -> Void)?) {
+        let alert = from.createAlert(title, body, handler)
+        from.present(alert, animated: true)
+    }
 }
