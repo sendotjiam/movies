@@ -46,6 +46,7 @@ final class DetailViewController: UIViewController {
         .header, .body
     ]
     
+    private let wireframe = DetailWireframe()
     private let viewModel: DetailViewModelProtocol
     private let bag = DisposeBag()
     
@@ -124,16 +125,14 @@ extension DetailViewController {
                 guard let self else { return }
                 switch event {
                 case .next(_):
-                    let alert = self.createAlert("Success", "You have successfully added this movie to your favorite list.", nil)
-                    self.present(alert, animated: true)
+                    self.wireframe.showBottomSheet(from: self, type: .success(body: "You have successfully added this movie to your favorite list."))
                 case .error(let error):
                     guard let error = error as? BaseErrors else {
                         return
                     }
                     switch (error) {
                     default:
-                        let alert = self.createAlert("Failed", "Failed to add this movie as favorite, please check your favorite list whether this movie has been added before.", nil)
-                        self.present(alert, animated: true)
+                        self.wireframe.showBottomSheet(from: self, type: .fail(body: "Failed to add this movie as favorite, please check your favorite list whether this movie has been added before."))
                     }
                 case .completed:
                     return

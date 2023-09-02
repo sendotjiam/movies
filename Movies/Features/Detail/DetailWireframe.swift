@@ -23,4 +23,10 @@ final class DetailWireframe {
         from.navigationController?.present(vc, animated: true)
     }
 
+    func showBottomSheet(from: UIViewController, type: BottomSheetType) {
+        let vc = BottomSheetViewController()
+        vc.configure(type: type)
+        vc.modalPresentationStyle = .overCurrentContext
+        from.present(vc, animated: false)
+    }
 }

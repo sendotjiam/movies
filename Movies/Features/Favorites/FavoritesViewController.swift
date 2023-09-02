@@ -22,6 +22,7 @@ final class FavoritesViewController: UIViewController {
         return view
     }()
     
+    private let wireframe = FavoritesWireframe()
     private let viewModel: FavoritesViewModelProtocol
     private let bag = DisposeBag()
     
@@ -85,7 +86,7 @@ extension FavoritesViewController {
                     }
                     switch (error) {
                     default:
-                        let alert = self.createAlert("Failed", "Failed to get movie list, please try again later.", nil)
+                        let alert = self.createAlert("Failed", "Failed to do your task, please try again later.", nil)
                         self.present(alert, animated: true)
                     }
                 case .completed:
