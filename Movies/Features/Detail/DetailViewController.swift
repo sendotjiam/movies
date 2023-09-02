@@ -70,7 +70,6 @@ final class DetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.backgroundColor = .clear
         navigationItem.largeTitleDisplayMode = .never
     }
     
@@ -102,8 +101,8 @@ extension DetailViewController {
             make.height.equalTo(60)
         })
         
+        tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         tableView.snp.makeConstraints({ make in
-            make.top.equalToSuperview()
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
             make.bottom.equalToSuperview()

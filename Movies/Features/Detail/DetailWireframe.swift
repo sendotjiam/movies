@@ -20,7 +20,7 @@ final class DetailWireframe {
     func show(from: UIViewController, with id: Int, isFromFavorite: Bool = false) {
         let vc = create(id: id)
         vc.isFromFavorite = isFromFavorite
-        from.navigationController?.present(vc, animated: true)
+        from.navigationController?.pushViewController(vc, animated: true)
     }
 
     func showBottomSheet(from: UIViewController, type: BottomSheetType) {
