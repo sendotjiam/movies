@@ -38,7 +38,18 @@ extension MovieRepository: MovieRepositoryProtocol {
                 let movieList = try JSONDecoder().decode(MovieListResponseModel.self, from: data)
                 return movieList
             } catch {
-                print(error)
+                throw BaseErrors.decodeError
+            }
+        })
+    }
+    
+    func getMovie(by id: Int) -> Observable<MovieDetailResponseModel> {
+        let path = "/movie/\(id)?\(NetworkConstants.apiKeyPath)"
+        return apiClient.request(path, .get, nil, nil).map({ _, data in
+            do {
+                let movieDetail = try JSONDecoder().decode(MovieDetailResponseModel.self, from: data)
+                return movieDetail
+            } catch {
                 throw BaseErrors.decodeError
             }
         })

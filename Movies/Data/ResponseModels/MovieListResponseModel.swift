@@ -14,26 +14,22 @@ struct MovieListResponseModel : Decodable {
 
 struct MovieResponseModel : Decodable {
     let id : Int
-    let adult : Bool
     let posterPath : String?
     let originalLanguage : String
-    let overview : String
     let popularity : Float
     let releaseDate : String?
     let title : String
     
     enum CodingKeys: String, CodingKey {
-        case id = "id"
-        case adult = "adult"
+        case id
         case posterPath = "poster_path"
         case originalLanguage = "original_language"
-        case overview = "overview"
-        case popularity = "popularity"
+        case popularity
         case releaseDate = "release_date"
-        case title = "title"
+        case title
     }
     
     func toDomain() -> Movie {
-        Movie(id: id, adult: adult, posterPath: posterPath ?? "", originalLanguage: originalLanguage, overview: overview, popularity: popularity, releaseDate: releaseDate, title: title)
+        Movie(id: id, posterPath: posterPath ?? "", releaseDate: releaseDate, title: title, popularity: popularity, originalLanguage: originalLanguage)
     }
 }

@@ -14,3 +14,11 @@ extension UICollectionView {
         }
     }
 }
+
+extension UITableView {
+    func reload() {
+        DispatchQueue.main.async { [weak self] in
+            self?.reloadData()
+        }
+    }
+}
