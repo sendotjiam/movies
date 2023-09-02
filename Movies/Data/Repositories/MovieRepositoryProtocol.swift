@@ -10,6 +10,7 @@ import RxSwift
 
 protocol MovieRepositoryProtocol {
     func fetchMovieList(page: Int) -> Observable<MovieListResponseModel>
+    func getMovie(by id: Int) -> Observable<MovieDetailResponseModel>
     func searchMovieList(query: String, page: Int) -> Observable<MovieListResponseModel>
 }
 

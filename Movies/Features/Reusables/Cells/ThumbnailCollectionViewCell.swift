@@ -42,7 +42,7 @@ final class ThumbnailCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(with model: Movie) {
-        let url = URL(string: "https://image.tmdb.org/t/p/w185/\(model.posterPath)")
+        let url = URL(string: "https://image.tmdb.org/t/p/w200/\(model.posterPath)")
         titleLabel.text = "\(model.title)"
         imageView.kf.setImage(with: url,
                               placeholder: UIImage(named: "placeholder-img"),

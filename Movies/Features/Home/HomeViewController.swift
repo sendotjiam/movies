@@ -80,6 +80,9 @@ final class HomeViewController: UIViewController {
         title = "Popular Movies"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .always
+        
+        let favoriteButton = UIBarButtonItem(title: "Favorites", style: .plain, target: self, action: #selector(didTapFavorite))
+        navigationItem.rightBarButtonItem = favoriteButton
     }
 }
 
@@ -120,7 +123,14 @@ extension HomeViewController {
                 case .next(_):
                     self.collectionView.reload()
                 case .error(let error):
-                    print(error)
+                    guard let error = error as? BaseErrors else {
+                        return
+                    }
+                    switch (error) {
+                    default:
+                        let alert = self.createAlert("Failed", "Failed to get movie list, please try again later.", nil)
+                        self.present(alert, animated: true)
+                    }
                 case .completed:
                     return
                 }
@@ -164,6 +174,10 @@ extension HomeViewController {
     
     @objc private func didTapSearch() {
         SearchWireframe().show(from: self)
+    }
+    
+    @objc private func didTapFavorite() {
+        FavoritesWireframe().show(from: self)
     }
 }
 
@@ -215,10 +229,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//                guard let model = viewModel.motorcyclesModel?[indexPath.row] else {
-//                    return
-//                }
-//                let vc = ProductDetailViewController(with: ProductDetailViewModel(model: model))
-        
+        let id = viewModel.displayData[indexPath.row].id
+        DetailWireframe().show(from: self, with: id)
     }
 }
