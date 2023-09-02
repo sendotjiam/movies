@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 final class FavoritesViewController: UIViewController {
-
+    
     private lazy var collectionView = makeCollectionView()
     
     private lazy var loadingIndicatorView = {
@@ -19,6 +19,12 @@ final class FavoritesViewController: UIViewController {
         view.backgroundColor = .black.withAlphaComponent(0.5)
         view.isHidden = true
         view.roundCorner(with: 10)
+        return view
+    }()
+    
+    private lazy var emptyView = {
+        let view = EmptyView()
+        view.isHidden = true
         return view
     }()
     
@@ -58,8 +64,15 @@ extension FavoritesViewController {
         
         collectionView.register(ThumbnailCollectionViewCell.self, forCellWithReuseIdentifier: ThumbnailCollectionViewCell.identifier)
         
+        view.addSubview(emptyView)
         view.addSubview(collectionView)
         view.addSubview(loadingIndicatorView)
+        emptyView.snp.makeConstraints({ make in
+            make.top.equalToSuperview()
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
+        })
         collectionView.snp.makeConstraints({ make in
             make.top.equalToSuperview().offset(16)
             make.leading.equalToSuperview().offset(16)
@@ -80,6 +93,7 @@ extension FavoritesViewController {
                 switch event {
                 case .next(_):
                     self.collectionView.reload()
+                    self.emptyView.isHidden = !self.viewModel.displayData.isEmpty
                 case .error(let error):
                     guard let error = error as? BaseErrors else {
                         return
@@ -128,17 +142,17 @@ extension FavoritesViewController: UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThumbnailCollectionViewCell.identifier,
-                                                                for: indexPath) as? ThumbnailCollectionViewCell
-            else { return UICollectionViewCell() }
-            cell.configure(with: viewModel.displayData[indexPath.row])
-            return cell
+                                                            for: indexPath) as? ThumbnailCollectionViewCell
+        else { return UICollectionViewCell() }
+        cell.configure(with: viewModel.displayData[indexPath.row])
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (collectionView.frame.width / 2) - 8
-            return CGSize(width: width, height: 270)
+        return CGSize(width: width, height: 270)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -160,7 +174,7 @@ extension FavoritesViewController: UICollectionViewDelegate, UICollectionViewDat
                     "Remove from favorites?",
                     "Are you sure you are going to remove delete this category from your favorite list", { _ in
                         self.viewModel.delete(by: id)
-                })
+                    })
                 self.present(alert, animated: true)
             }
             return UIMenu(title: "", children: [favoriteAction])
