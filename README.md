@@ -4,6 +4,10 @@ PARKEE iOS Engineer Technical Test - Sendo Tjiamis
 ### Overview
 This project contains MVVM Pattern that wrapped in Clean Architecture which divides the application structures into Data, Domain, and Features/Presentation layer. The goals of this multilayer structure are actually to make the code supports separation of concerns and single responsibility of its object.
 
+### Infos
+The minimum iOS version of this app is iOS 13 (Actually there are no reasons to choose the version, it was just I'm more comfortable to develop by using iOS 13).
+Pardon me if I am using the incorrect version.
+
 ### Dependencies
 1. RxSwift as a reactive programming tool for this application. The purpose of using RxSwift is actually to help the code to be more optimal when carrying out the data binding process.
 2. SnapKit for programmatically autolayout.
