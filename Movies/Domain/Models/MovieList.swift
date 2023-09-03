@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Movie {
+struct Movie: Equatable {
     let id : Int
     let posterPath : String
     let releaseDate : String?

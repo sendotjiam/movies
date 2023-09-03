@@ -14,7 +14,7 @@ protocol DetailViewModelProtocol {
     var addFavoriteSubject: PublishSubject<Void> { get }
     var movieDetailSubject: PublishSubject<Void> { get }
     
-    var displayData: MovieDetail? { get }
+    var displayData: MovieDetail? { get set }
     
     func onViewDidLoad()
     func addToFavorite()

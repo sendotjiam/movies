@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MovieDetail {
+struct MovieDetail : Equatable {
     let id : Int
     let adult : Bool
     let posterPath : String
