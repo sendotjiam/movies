@@ -11,4 +11,11 @@ target 'Movies' do
   pod 'Alamofire'
   pod 'Kingfisher', '~> 7.0'
 
+  target 'MoviesTests' do
+    inherit! :search_paths
+    # Pods for testing
+    pod 'RxBlocking', '6.0.0'
+    pod 'RxTest', '6.0.0'
+  end
+  
 end
