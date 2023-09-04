@@ -2,8 +2,11 @@
 This project contains MVVM Pattern that wrapped in Clean Architecture which divides the application structures into Data, Domain, and Features/Presentation layer. The goals of this multilayer structure are actually to make the code supports separation of concerns and single responsibility of its object.
 
 ### Infos
-- The minimum iOS version of this app is iOS 13 (Actually there are no reasons to choose the version, it was just I'm more comfortable to develop by using iOS 13).
-- Pardon me if I am using the incorrect version.
+- The minimum iOS version of this app is iOS 13 (Actually there are no reasons to choose the version, it was just I'm more comfortable to develop by using iOS 13 and there is no rule about the version).
+- The timeline of this project is:
+    1. Initialize repository - 30th August 2023
+    2. Start development - 1st September 2023
+    3. End development - 4th September 2023
 
 ### Dependencies
 All dependencies are being managed by using CocoaPods.
